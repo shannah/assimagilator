@@ -1,0 +1,15 @@
+{
+  "bin": {"fitimg": "jdeploy-bundle/jdeploy.js"},
+  "author": "Steve Hannah",
+  "description": "Fits an image to one or more destination images, assimilating the destination image's format and dimensions",
+  "main": "index.js",
+  "preferGlobal": true,
+  "repository": "",
+  "version": "1.0.0",
+  "jdeploy": {"jar": "dist/Assimagilator.jar"},
+  "dependencies": {"shelljs": "^0.7.5"},
+  "license": "ISC",
+  "name": "assimagilator",
+  "files": ["jdeploy-bundle"],
+  "scripts": {"test": "echo \"Error: no test specified\" && exit 1"}
+}
