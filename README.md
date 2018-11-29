@@ -12,7 +12,7 @@ This is useful for generating icons for app stores that require specific formats
 	
 ### Manually
 
-Download  [Assimilator.jar](bin/Assimilator.jar)
+Download  [Assimagilator.jar](bin/Assimagilator.jar)
 
 
 ## Usage
@@ -27,7 +27,7 @@ WARNING: This will overwrite the destination images.
 
 #### If you installed manually
 
-    java -jar Assimilator.jar path/to/src/image.png path/to/dest/image.png path/to/dest/image2.png ... path/to/dest/imagen.png
+    java -jar Assimagilator.jar path/to/src/image.png path/to/dest/image.png path/to/dest/image2.png ... path/to/dest/imagen.png
 	
 ### Using a directory for destination
 
