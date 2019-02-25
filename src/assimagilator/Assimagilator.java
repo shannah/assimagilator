@@ -16,6 +16,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import net.coobird.thumbnailator.Thumbnails;
 
 /**
  *
@@ -165,6 +166,14 @@ public class Assimagilator implements Runnable {
             }
             return;
         }
+        File tmpImg = File.createTempFile(destImageFile.getName(), ".png");
+        tmpImg.deleteOnExit();
+        Thumbnails.of(srcImageFile)
+                .size(destImage.getWidth(), destImage.getHeight())
+                .toFile(tmpImg);
+        
+        srcImage = ImageIO.read(tmpImg);
+        tmpImg.delete();
         fit(srcImage, destImage, backgroundColor);
         String format = getFormatName(destImageFile);
         if (format == null) {
@@ -174,6 +183,7 @@ public class Assimagilator implements Runnable {
         if (out != null) {
             out.println(srcImageFile+" fitted successfully to "+destImageFile);
         }
+        
     }
     
     private String getFormatName(File file) {
@@ -212,9 +222,9 @@ public class Assimagilator implements Runnable {
         int w = srcW;
         int h = srcH;
         g.setComposite(AlphaComposite.Src);
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC);
         g.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        //g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g.drawImage(srcImage, x, y, w, h, null);
         g.dispose();
         
